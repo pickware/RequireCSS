@@ -108,7 +108,7 @@
 				if (url.search(/.(css|less|scss|sass)$/i) == -1)
 					url += '.css';
 
-				css.testLoad(require.toUrl(url), load);
+				css.testLoad(req.toUrl(url), load);
 			}
 		};
 
