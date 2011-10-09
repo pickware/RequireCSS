@@ -102,11 +102,8 @@
 			},
 
 			load: function (name, req, load, config) {
-				var url = name;
-
 				// Append default extension
-				if (url.search(/\.(css|less|scss|sass)$/i) == -1)
-					url += '.css';
+				var url = name.search(/\.(css|less|scss)$/i) === -1 ? name + '.css' : name;
 
 				css.testLoad(req.toUrl(url), load);
 			}
