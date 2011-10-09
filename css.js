@@ -10,6 +10,16 @@
 		// Eliminate browsers that admit to not support the link load event (e.g. Firefox)
 		nativeLoad = document.createElement('link').onload === null ? undefined : false;
 
+	function createLink(url) {
+		var link = document.createElement('link');
+
+		link.rel = "stylesheet";
+		link.type = "text/css";
+		link.href = url;
+
+		return link;
+	}
+
 	define(function () {
 		var css;
 
@@ -20,13 +30,9 @@
 				// Test if the browser supports the link load event,
 				// in case we don't know yet (mostly WebKit)
 				if (nativeLoad === undefined) {
-					var link = document.createElement('link'),
-						self = this;
-
 					// Create a link element with a data url, it would fire a load event immediately
-					link.rel = "stylesheet";
-					link.type = "text/css";
-					link.href = "data:text/css,";
+					var link = createLink('data:text/css,'),
+						self = this;
 
 					link.onload = function () {
 						// Native link load event works
@@ -60,21 +66,11 @@
 				}
 			},
 
-			createLink: function (url) {
-				var link = document.createElement('link');
-
-				link.rel = "stylesheet";
-				link.type = "text/css";
-				link.href = url;
-
-				return link;
-			},
-
 			/**
 			 * Load using the browsers built-in load event on link tags
 			 */
 			loadLink: function (url, load) {
-				var link = this.createLink(url);
+				var link = createLink(url);
 
 				link.onload = function () {
 					load();
@@ -89,7 +85,7 @@
 			 * (file not found, network down)
 			 */
 			loadImage: function (url, load) {
-				var link = this.createLink(url),
+				var link = createLink(url),
 					img = document.createElement('img');
 
 				head.appendChild(link);
