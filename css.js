@@ -30,7 +30,8 @@
 				// Test if the browser supports the link load event,
 				// in case we don't know yet (mostly WebKit)
 				if (nativeLoad === undefined) {
-					// Create a link element with a data url, it would fire a load event immediately
+					// Create a link element with a data url,
+					// it would fire a load event immediately
 					var link = createLink('data:text/css,'),
 						self = this;
 
