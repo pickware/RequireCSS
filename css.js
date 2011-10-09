@@ -1,5 +1,5 @@
 /**
- * @license RequireJS css 0.0.1 Copyright (c) 2011, VIISON All Rights Reserved.
+ * @license RequireJS css 0.1.0 Copyright (c) 2011, VIISON All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: http://github.com/viison/requirejs-css for details
  */
@@ -24,7 +24,7 @@
 		var css;
 
 		css = {
-			version: '0.0.1',
+			version: '0.1.0',
 
 			testLoad: function (url, load) {
 				// Test if the browser supports the link load event,
