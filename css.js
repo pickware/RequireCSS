@@ -105,7 +105,7 @@
 				var url = name;
 
 				// Append default extension
-				if (url.search(/.(css|less|scss|sass)$/i) == -1)
+				if (url.search(/\.(css|less|scss|sass)$/i) == -1)
 					url += '.css';
 
 				css.testLoad(req.toUrl(url), load);
