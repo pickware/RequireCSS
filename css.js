@@ -26,14 +26,13 @@
 		css = {
 			version: '0.0.1',
 
-			testLoad: function (load) {
+			testLoad: function (url, load) {
 				// Test if the browser supports the link load event,
 				// in case we don't know yet (mostly WebKit)
 				if (nativeLoad === undefined) {
 					// Create a link element with a data url,
 					// it would fire a load event immediately
-					var link = createLink('data:text/css,'),
-						self = this;
+					var link = createLink('data:text/css,');
 
 					link.onload = function () {
 						// Native link load event works
@@ -52,18 +51,18 @@
 							nativeLoad = false;
 						}
 
-						self.loadSwitch(load);
+						css.loadSwitch(url, load);
 					}, 0);
 				} else {
-					this.loadSwitch(load);
+					css.loadSwitch(url, load);
 				}
 			},
 
-			loadSwitch: function (load) {
+			loadSwitch: function (url, load) {
 				if (nativeLoad) {
-					load(this.loadLink);
+					css.loadLink(url, load);
 				} else {
-					load(this.loadImage);
+					css.loadImage(url, load);
 				}
 			},
 
@@ -103,16 +102,13 @@
 			},
 
 			load: function (name, req, load, config) {
-				var url = name,
-					self = this;
+				var url = name;
 
 				// Append default extension
 				if (url.search(/.(css|less|scss|sass)$/i) == -1)
 					url += '.css';
 
-				this.testLoad(function (callback) {
-					callback.call(self, require.toUrl(url), load);
-				});
+				css.testLoad(require.toUrl(url), load);
 			}
 		};
 
