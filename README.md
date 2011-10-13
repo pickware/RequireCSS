@@ -9,7 +9,7 @@ Only caveat is that there will be no error message when a stylesheet could not b
 * Firefox 7, 9a2
 * Safari 5.1
 * Chrome 14
-* Opera 11.5
+* Opera 10, 11.5
 * IE 6, 9
 
 # Credits
