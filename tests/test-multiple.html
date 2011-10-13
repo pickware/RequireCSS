@@ -13,14 +13,15 @@
 			var div = $('#test');
 
 			require([
-				'css!style/test'
+				'css!style/test',
+				'css!style/test2'
 			], function() {
-				if (div.height() == 25) {
-					log('Loaded CSS file');
+				if (div.height() == 50) {
+					log('Loaded two CSS files');
 
 					$('body').css('background-color', 'green');
 				} else {
-					log('Loading CSS file failed');
+					log('Loading two CSS files failed');
 				}
 			});
 		});

@@ -16,11 +16,21 @@
 				'css!style/test'
 			], function() {
 				if (div.height() == 25) {
-					log('Loaded CSS file');
+					log('Loaded CSS file one');
+	
+					require([
+						'css!style/test2.css'
+					], function() {
+						if (div.height() == 50) {
+							log('Loaded CSS file two');
 
-					$('body').css('background-color', 'green');
+							$('body').css('background-color', 'green');
+						} else {
+							log('Loading CSS file two faild');
+						}
+					});
 				} else {
-					log('Loading CSS file failed');
+					log('Loading CSS file one faild');
 				}
 			});
 		});
