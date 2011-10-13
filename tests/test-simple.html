@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RequireJS CSS Plugin</title>
+
+	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	<script src="../require-0.27.1.js"></script>
+
+	<script src="test.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			var div = $('#test');
+
+			require([
+				'css!style/test'
+			], function() {
+				if (div.height() == 25) {
+					log('Loaded CSS one');
+	
+					require([
+						'css!style/test2.css'
+					], function() {
+						if (div.height() == 50) {
+							log('Loaded CSS two');
+						} else {
+							log('two failed');
+						}
+					});
+				} else {
+					log('one failed');
+				}
+			});
+		});
+	</script>
+
+</head>
+<body>
+	<div id="log" style="width: 400px; border: 1px solid gray; margin-bottom: 20px;"></div>
+
+	<div id="test">Test DIV</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RequireJS CSS Plugin Tests</title>
+
+	<style type="text/css">
+		iframe {
+			width: 600px;
+			height: 200px;
+		}
+	</style>
+
+	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			// Simple refresh button
+			$('a').click(function(e) {
+				e.preventDefault();
+
+				$('iframe').each(function(i, elem) {
+					$(elem).attr('src', function (i, val) {
+						return val;
+					});
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<p><a href="">Refresh all</a></p>
+
+	<div>Simple test:</div>
+	<iframe src="./test-simple.html"></iframe>
+</body>
+</html>
