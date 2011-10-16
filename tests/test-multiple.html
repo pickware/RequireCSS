@@ -1,36 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>RequireJS CSS Plugin</title>
+	<title>RequireJS CSS Plugin - Test Multiple</title>
 
-	<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 	<script src="../require-0.27.1.js"></script>
-
 	<script src="test.js"></script>
-
-	<script type="text/javascript">
-		$(function() {
-			var div = $('#test');
-
-			require([
-				'css!style/test',
-				'css!style/test2'
-			], function() {
-				if (div.height() == 50) {
-					log('Loaded two CSS files');
-
-					$('body').css('background-color', 'green');
-				} else {
-					log('Loading two CSS files failed');
-				}
-			});
-		});
-	</script>
-
 </head>
 <body>
 	<div id="log" style="width: 400px; border: 1px solid gray; margin-bottom: 20px;"></div>
 
 	<div id="test">Test DIV</div>
+
+	<script type="text/javascript">
+		var div = document.getElementById('test');
+
+		require([
+			'css!style/test',
+			'css!style/test2'
+		], function() {
+			if (div.clientHeight == 50) {
+				log('Loaded two CSS files');
+
+				success();
+			} else {
+				log('Loading two CSS files failed');
+			}
+		});
+	</script>
 </body>
 </html>
