@@ -6,7 +6,6 @@
 (function () {
 	
 	var head = document.head || document.getElementsByTagName('head')[0],
-		body = document.body || document.getElementsByTagName('body')[0],
 		// Eliminate browsers that admit to not support the link load event (e.g. Firefox)
 		nativeLoad = document.createElement('link').onload === null ? undefined : false;
 
@@ -92,13 +91,8 @@
 
 				img.onerror = function (error) {
 					load();
-
-					body.removeChild(img);
 				};
 				img.src = url;
-				img.style.display = 'none';
-
-				body.appendChild(img);
 			},
 
 			load: function (name, req, load, config) {
