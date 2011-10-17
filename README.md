@@ -1,4 +1,4 @@
-# RequireJS css! plugin
+# RequireCSS (RequireJS _css!_ plugin)
 
 A [RequireJS][1] plugin which loads and waits for css files. Uses the standard load event on browsers which support it (IE, Firefox 9+, Opera) and uses a script tags load & error events as a workaround (Chrome, Safari, Firefox < 9). Detection of link load event support is done using a link element with a data url, which fires onload immediately when supported.
 
