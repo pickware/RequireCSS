@@ -8,12 +8,12 @@ Only caveat is that there will be no error message when a stylesheet could not b
 
 # Compatability / Tested in
 
-* Firefox 3.6, 7, 9a2
-* Safari 5.1
-* Mobile Safari 5.1 (iOS 5)
-* Chrome 14
-* Opera 9, 9.5, 10, 10.6, 11, 11.5
-* IE 6, 9
+* Firefox 3.6, 4, 7, 9a2
+* Safari 3.2, 4, 5, 5.1
+* Mobile Safari 4 (iOS 3.2 & 4), 5.1 (iOS 5)
+* Chrome 2, 5, 8, 10, 14
+* Opera 9.5, 10, 10.6, 11, 11.5
+* IE 6, 7, 8, 9
 
 # Credits
 
