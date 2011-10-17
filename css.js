@@ -19,6 +19,20 @@
 		return link;
 	}
 
+	function styleSheetLoaded(url) {
+		// Get absolute url
+		var a = document.createElement('a');
+		a.href = url;
+
+		for (var i in document.styleSheets) {
+			if (document.styleSheets[i].href === a.href) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	define(function () {
 		var css;
 
@@ -61,7 +75,7 @@
 				if (nativeLoad) {
 					css.loadLink(url, load);
 				} else {
-					css.loadImage(url, load);
+					css.loadScript(url, load);
 				}
 			},
 
@@ -79,20 +93,35 @@
 			},
 
 			/**
-			 * Insert an image tag and use it's onerror to know when the CSS
-			 * is loaded, this will unfortunately also fire on other errors
-			 * (file not found, network down)
+			 * Insert a script tag and use it's onload & onerror to know when
+			 * the CSS is loaded, this will unfortunately also fire on other
+			 * errors (file not found, network problems)
 			 */
-			loadImage: function (url, load) {
+			loadScript: function (url, load) {
 				var link = createLink(url),
-					img = document.createElement('img');
+					script = document.createElement('script');
 
 				head.appendChild(link);
 
-				img.onerror = function (error) {
-					load();
+				script.onload = script.onerror = function () {
+					head.removeChild(script);
+
+					// In Safari the stylesheet might not yet be applied, when
+					// the script is loaded so we poll document.styleSheets for it
+					var checkLoaded = function() {
+						if (styleSheetLoaded(url)) {
+							load();
+
+							return;
+						}
+
+						setTimeout(checkLoaded, 25);
+					}
+					checkLoaded();
 				};
-				img.src = url;
+				script.src = url;
+
+				head.appendChild(script);
 			},
 
 			load: function (name, req, load, config) {
