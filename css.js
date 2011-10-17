@@ -4,7 +4,8 @@
  * see: http://github.com/VIISON/RequireCSS for details
  */
 (function () {
-	
+	"use strict";
+
 	var head = document.head || document.getElementsByTagName('head')[0],
 		// Eliminate browsers that admit to not support the link load event (e.g. Firefox)
 		nativeLoad = document.createElement('link').onload === null ? undefined : false;
@@ -21,10 +22,11 @@
 
 	function styleSheetLoaded(url) {
 		// Get absolute url
-		var a = document.createElement('a');
+		var a = document.createElement('a'),
+			i;
 		a.href = url;
 
-		for (var i in document.styleSheets) {
+		for (i in document.styleSheets) {
 			if (document.styleSheets[i].href === a.href) {
 				return true;
 			}
@@ -108,7 +110,7 @@
 
 					// In Safari the stylesheet might not yet be applied, when
 					// the script is loaded so we poll document.styleSheets for it
-					var checkLoaded = function() {
+					var checkLoaded = function () {
 						if (styleSheetLoaded(url)) {
 							load();
 
@@ -116,7 +118,7 @@
 						}
 
 						setTimeout(checkLoaded, 25);
-					}
+					};
 					checkLoaded();
 				};
 				script.src = url;
