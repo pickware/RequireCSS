@@ -15,6 +15,11 @@ Only caveat is that there will be no error message when a stylesheet could not b
 * Opera 9.5, 10, 10.6, 11, 11.5
 * IE 6, 7, 8, 9
 
+# Planned
+
+* Media-Query support
+* r.js optimizer support
+
 # Credits
 
 * [Workaround for missing link load event][1] - Daniel Buchner, backalleycoder.com
