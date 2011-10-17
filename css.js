@@ -1,7 +1,7 @@
 /**
  * @license RequireCSS 0.3.0 Copyright (c) 2011, VIISON All Rights Reserved.
  * Available via the MIT or new BSD license.
- * see: http://github.com/viison/requirejs-css for details
+ * see: http://github.com/VIISON/RequireCSS for details
  */
 (function () {
 	
