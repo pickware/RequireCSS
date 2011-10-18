@@ -8,7 +8,8 @@
 
 	var head = document.head || document.getElementsByTagName('head')[0],
 		// Eliminate browsers that admit to not support the link load event (e.g. Firefox)
-		nativeLoad = document.createElement('link').onload === null ? undefined : false;
+		nativeLoad = document.createElement('link').onload === null ? undefined : false,
+		a = document.createElement('a');
 
 	function createLink(url) {
 		var link = document.createElement('link');
@@ -21,9 +22,9 @@
 	}
 
 	function styleSheetLoaded(url) {
-		// Get absolute url
-		var a = document.createElement('a'),
-			i;
+		var i;
+
+		// Get absolute url by assigning to a link and reading it back below
 		a.href = url;
 
 		for (i in document.styleSheets) {
