@@ -131,7 +131,7 @@
 				head.appendChild(script);
 			},
 
-			load: function (name, req, load, config) {
+			load: function (name, req, load) { //, config (not used)
 				// Append default extension
 				var url = name.search(/\.(css|less|scss)$/i) === -1 ? name + '.css' : name;
 
