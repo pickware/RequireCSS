@@ -12,7 +12,7 @@
 
 	var doc = document,
 		head = doc.head || doc.getElementsByTagName('head')[0],
-		// Eliminate browsers that admit to not support the link load event (e.g. Firefox)
+		// Eliminate browsers that admit to not support the link load event (e.g. Firefox < 9)
 		nativeLoad = doc.createElement('link').onload === null ? undefined : false,
 		a = doc.createElement('a');
 
