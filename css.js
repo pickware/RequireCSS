@@ -3,6 +3,10 @@
  * Available via the MIT or new BSD license.
  * see: http://github.com/VIISON/RequireCSS for details
  */
+
+/*jslint forin: true */
+/*global document: true, setTimeout: true, define: true */
+
 (function () {
 	"use strict";
 
