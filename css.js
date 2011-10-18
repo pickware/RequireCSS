@@ -1,5 +1,5 @@
 /**
- * @license RequireCSS 0.3.0 Copyright (c) 2011, VIISON All Rights Reserved.
+ * @license RequireCSS 0.3.1 Copyright (c) 2011, VIISON All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: http://github.com/VIISON/RequireCSS for details
  */
@@ -98,7 +98,7 @@
 		var css;
 
 		css = {
-			version: '0.3.0',
+			version: '0.3.1',
 
 			load: function (name, req, load) { //, config (not used)
 				// convert name to actual url
