@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RequireJS CSS Plugin - Test Simple</title>
+
+	<script src="../require-0.27.1.js"></script>
+	<script src="./test.js"></script>
+</head>
+<body>
+	<div id="log" style="width: 400px; border: 1px solid gray; margin-bottom: 20px;"></div>
+
+	<div id="test" class="ui-icon"></div>
+
+	<script type="text/javascript">
+		var div = document.getElementById('test');
+
+		require([
+			'css!https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/start/jquery-ui.css'
+		], function() {
+			if (div.clientHeight == 16) {
+				log('Loaded CSS file');
+
+				success();
+			} else {
+				log('Loading CSS file failed');
+			}
+		});
+	</script>
+</body>
+</html>
