@@ -10,13 +10,14 @@
 (function () {
 	"use strict";
 
-	var head = document.head || document.getElementsByTagName('head')[0],
+	var doc = document,
+		head = doc.head || doc.getElementsByTagName('head')[0],
 		// Eliminate browsers that admit to not support the link load event (e.g. Firefox)
-		nativeLoad = document.createElement('link').onload === null ? undefined : false,
-		a = document.createElement('a');
+		nativeLoad = doc.createElement('link').onload === null ? undefined : false,
+		a = doc.createElement('a');
 
 	function createLink(url) {
-		var link = document.createElement('link');
+		var link = doc.createElement('link');
 
 		link.rel = "stylesheet";
 		link.type = "text/css";
@@ -31,8 +32,8 @@
 		// Get absolute url by assigning to a link and reading it back below
 		a.href = url;
 
-		for (i in document.styleSheets) {
-			if (document.styleSheets[i].href === a.href) {
+		for (i in doc.styleSheets) {
+			if (doc.styleSheets[i].href === a.href) {
 				return true;
 			}
 		}
@@ -106,7 +107,7 @@
 			 */
 			loadScript: function (url, load) {
 				var link = createLink(url),
-					script = document.createElement('script');
+					script = doc.createElement('script');
 
 				head.appendChild(link);
 
