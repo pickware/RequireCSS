@@ -24,6 +24,8 @@ Only caveats __in browsers not supporting the native link load event are that th
 
 * [Workaround for missing link load event][1] - Daniel Buchner, backalleycoder.com
 * [Inspiration to build this plugin][2] - John Hann, unscriptable.com
+* [Independently developed some of the same techniques and describes them in details][3] - Julian Aubourg, jaubourg.net
 
 [1]: http://www.backalleycoder.com/2011/03/20/link-tag-css-stylesheet-load-event/
 [2]: https://github.com/unscriptable/curl/blob/master/src/curl/plugin/css.js
+[3]: http://jaubourg.net/feature-testing-impossible-data-uri-and-defer
