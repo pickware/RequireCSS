@@ -41,13 +41,72 @@
 		return false;
 	}
 
+	function loadSwitch(url, load) {
+		if (nativeLoad) {
+			loadLink(url, load);
+		} else {
+			loadScript(url, load);
+		}
+	};
+
+	/**
+	 * Load using the browsers built-in load event on link tags
+	 */
+	function loadLink(url, load) {
+		var link = createLink(url);
+
+		link.onload = function () {
+			load();
+		};
+
+		head.appendChild(link);
+	};
+
+	/**
+	 * Insert a script tag and use it's onload & onerror to know when
+	 * the CSS is loaded, this will unfortunately also fire on other
+	 * errors (file not found, network problems)
+	 */
+	function loadScript(url, load) {
+		var link = createLink(url),
+			script = doc.createElement('script');
+
+		head.appendChild(link);
+
+		script.onload = script.onerror = function () {
+			head.removeChild(script);
+
+			// In Safari the stylesheet might not yet be applied, when
+			// the script is loaded so we poll document.styleSheets for it
+			var checkLoaded = function () {
+				if (styleSheetLoaded(url)) {
+					load();
+
+					return;
+				}
+
+				setTimeout(checkLoaded, 25);
+			};
+			checkLoaded();
+		};
+		script.src = url;
+
+		head.appendChild(script);
+	};
+
 	define(function () {
 		var css;
 
 		css = {
 			version: '0.3.0',
 
-			testLoad: function (url, load) {
+			load: function (name, req, load) { //, config (not used)
+				// convert name to actual url
+				var url = req.toUrl(
+					// Append default extension
+					name.search(/\.(css|less|scss)$/i) === -1 ? name + '.css' : name
+				);
+
 				// Test if the browser supports the link load event,
 				// in case we don't know yet (mostly WebKit)
 				if (nativeLoad === undefined) {
@@ -72,71 +131,11 @@
 							nativeLoad = false;
 						}
 
-						css.loadSwitch(url, load);
+						loadSwitch(url, load);
 					}, 0);
 				} else {
-					css.loadSwitch(url, load);
+					loadSwitch(url, load);
 				}
-			},
-
-			loadSwitch: function (url, load) {
-				if (nativeLoad) {
-					css.loadLink(url, load);
-				} else {
-					css.loadScript(url, load);
-				}
-			},
-
-			/**
-			 * Load using the browsers built-in load event on link tags
-			 */
-			loadLink: function (url, load) {
-				var link = createLink(url);
-
-				link.onload = function () {
-					load();
-				};
-
-				head.appendChild(link);
-			},
-
-			/**
-			 * Insert a script tag and use it's onload & onerror to know when
-			 * the CSS is loaded, this will unfortunately also fire on other
-			 * errors (file not found, network problems)
-			 */
-			loadScript: function (url, load) {
-				var link = createLink(url),
-					script = doc.createElement('script');
-
-				head.appendChild(link);
-
-				script.onload = script.onerror = function () {
-					head.removeChild(script);
-
-					// In Safari the stylesheet might not yet be applied, when
-					// the script is loaded so we poll document.styleSheets for it
-					var checkLoaded = function () {
-						if (styleSheetLoaded(url)) {
-							load();
-
-							return;
-						}
-
-						setTimeout(checkLoaded, 25);
-					};
-					checkLoaded();
-				};
-				script.src = url;
-
-				head.appendChild(script);
-			},
-
-			load: function (name, req, load) { //, config (not used)
-				// Append default extension
-				var url = name.search(/\.(css|less|scss)$/i) === -1 ? name + '.css' : name;
-
-				css.testLoad(req.toUrl(url), load);
 			}
 		};
 
