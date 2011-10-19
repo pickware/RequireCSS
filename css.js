@@ -41,14 +41,6 @@
 		return false;
 	}
 
-	function loadSwitch(url, load) {
-		if (nativeLoad) {
-			loadLink(url, load);
-		} else {
-			loadScript(url, load);
-		}
-	};
-
 	/**
 	 * Load using the browsers built-in load event on link tags
 	 */
@@ -92,6 +84,14 @@
 		script.src = url;
 
 		head.appendChild(script);
+	};
+
+	function loadSwitch(url, load) {
+		if (nativeLoad) {
+			loadLink(url, load);
+		} else {
+			loadScript(url, load);
+		}
 	};
 
 	define(function () {
