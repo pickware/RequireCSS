@@ -61,7 +61,7 @@
 	 */
 	function loadScript(url, load) {
 		var link = createLink(url),
-			script = doc.createElement('script');
+			script = doc.createElement('img');
 
 		head.appendChild(link);
 
